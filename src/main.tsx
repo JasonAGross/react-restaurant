@@ -6,6 +6,11 @@ import { Toaster } from "react-hot-toast";
 import "./index.css";
 import { ErrorBoundary } from "react-error-boundary";
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = await import('./mocks/browser')
+  worker.start()
+}
+
 // Warning: StrictMode will render twice in dev only. This can catch subtle bugs.
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
